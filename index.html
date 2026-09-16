@@ -8,18 +8,42 @@
 </head>
 <body>
     <div class="game-container">
+        <h1 class="game-title">🎮 لعبة سوبر ماريو 🎮</h1>
+        
         <div class="score-board">
             <div class="score">النقاط: <span id="score">0</span></div>
             <div class="coins">العملات: <span id="coins">0</span></div>
-            <div class="level">المستوى: <span id="level">1</span></div>
+            <div class="level">المستوى: <span id="level">1</span>/<span id="maxLevel">7</span></div>
         </div>
+
         <canvas id="gameCanvas" width="800" height="400"></canvas>
-        <div class="controls">
-            <p>استخدم أسهم لوحة المفاتيح للتحرك</p>
-            <p>اضغط SPACE للقفز</p>
-            <p>اضغط R لإعادة تشغيل اللعبة</p>
+
+        <div class="controls-info">
+            <h3>🎮 التحكم بلوحة المفاتيح:</h3>
+            <p>⬅️ ➡️ أو <strong>A/D</strong> - التحرك يميناً ويساراً</p>
+            <p><strong>SPACE</strong> - القفز</p>
+        </div>
+
+        <div class="buttons-container">
+            <button id="startBtn" class="btn btn-start">▶️ ابدأ اللعبة</button>
+            <button id="pauseBtn" class="btn btn-pause" disabled>⏸️ إيقاف مؤقت</button>
+            <button id="resumeBtn" class="btn btn-resume" style="display:none;">▶️ استئناف</button>
+            <button id="resetBtn" class="btn btn-reset">🔄 إعادة تعيين</button>
+            <button id="restartBtn" class="btn btn-restart">🔁 المستوى التالي</button>
+        </div>
+
+        <div class="game-stats">
+            <div class="stat-item">
+                <span class="stat-label">الحالة:</span>
+                <span id="gameStatus" class="stat-value">متوقفة</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-label">العملات المطلوبة:</span>
+                <span id="coinsNeeded" class="stat-value">4</span>
+            </div>
         </div>
     </div>
+
     <script src="game.js"></script>
 </body>
 </html>
