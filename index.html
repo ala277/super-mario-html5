@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>لعبة سوبر ماريو</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="game-container">
+        <div class="score-board">
+            <div class="score">النقاط: <span id="score">0</span></div>
+            <div class="coins">العملات: <span id="coins">0</span></div>
+            <div class="level">المستوى: <span id="level">1</span></div>
+        </div>
+        <canvas id="gameCanvas" width="800" height="400"></canvas>
+        <div class="controls">
+            <p>استخدم أسهم لوحة المفاتيح للتحرك</p>
+            <p>اضغط SPACE للقفز</p>
+            <p>اضغط R لإعادة تشغيل اللعبة</p>
+        </div>
+    </div>
+    <script src="game.js"></script>
+</body>
+</html>
