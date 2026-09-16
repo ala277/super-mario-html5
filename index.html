@@ -1,66 +1,44 @@
 <!DOCTYPE html>
-<html lang="ar">
+<html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>لعبة سوبر ماريو</title>
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="game-shell">
-    <div class="top-bar">
-      <div class="time">16:36</div>
-      <div class="status-icons">
-        <span>◔</span>
-        <span>📶</span>
-        <span>🔋</span>
-      </div>
+  <main class="game-shell">
+    <h1 class="game-title">🎮 لعبة سوبر ماريو 🎮</h1>
+    <div class="score-board">
+      <div class="score">النقاط: <span id="score">0</span></div>
+      <div class="coins">العملات: <span id="coins">0</span></div>
+      <div class="level">المستوى: <span id="level">1</span>/7</div>
     </div>
-
-    <div class="browser-bar">
-      <div class="browser-icon">⌂</div>
-      <div class="address">e.byethost33.com</div>
-      <div class="plus">＋</div>
-      <div class="badge">4</div>
-      <div class="menu">⋮</div>
+    <canvas id="gameCanvas" width="800" height="400" aria-label="لعبة ماريو"></canvas>
+    <div class="mobile-controls" aria-label="أزرار التحكم للهاتف">
+      <div class="move-controls">
+        <button class="touch-btn" id="leftBtn" aria-label="تحرك يساراً">◀</button>
+        <button class="touch-btn" id="rightBtn" aria-label="تحرك يميناً">▶</button>
+      </div>
+      <button class="touch-btn jump-btn" id="jumpBtn" aria-label="قفز">قفز</button>
     </div>
-
-    <div class="game-container">
-      <h1 class="game-title">لعبة سوبر ماريو</h1>
-
-      <div class="score-row">
-        <div class="score-box">العملات: <span id="coins">0</span></div>
-        <div class="score-box">النقاط: <span id="score">0</span></div>
-      </div>
-
-      <div class="score-row single">
-        <div class="score-box wide">المستوى: <span id="level">1</span>/<span id="maxLevel">7</span></div>
-      </div>
-
-      <canvas id="gameCanvas" width="800" height="400"></canvas>
-
-      <div class="controls-panel">
-        <h2>التحكم بلوحة المفاتيح:</h2>
-        <p>⬅️ ➡️ أو A / D - الحركة</p>
-        <p>SPACE - القفز</p>
-      </div>
-
-      <div class="button-grid">
-        <button id="startBtn" class="btn green">ابدأ اللعبة</button>
-        <button id="pauseBtn" class="btn orange" disabled>إيقاف مؤقت</button>
-        <button id="resumeBtn" class="btn blue" style="display:none;">استئناف</button>
-        <button id="resetBtn" class="btn red">إعادة تعيين</button>
-        <button id="nextBtn" class="btn purple">المستوى التالي</button>
-        <button id="restartBtn" class="btn red">إعادة اللعب</button>
-      </div>
-
-      <div class="status-bar">
-        <span class="status-label">الحالة:</span>
-        <span id="gameStatus" class="status-value">جاهزة</span>
-      </div>
+    <section class="controls-info">
+      <h2>🎮 التحكم</h2>
+      <p>الهاتف: استخدم أزرار اليمين واليسار والقفز</p>
+      <p>الكمبيوتر: الأسهم أو A/D — القفز بمفتاح SPACE</p>
+    </section>
+    <div class="buttons-container">
+      <button id="startBtn" class="btn btn-start">▶️ ابدأ اللعبة</button>
+      <button id="pauseBtn" class="btn btn-pause" disabled>⏸️ إيقاف مؤقت</button>
+      <button id="resumeBtn" class="btn btn-resume" hidden>▶️ استئناف</button>
+      <button id="resetBtn" class="btn btn-reset">🔄 إعادة تعيين</button>
+      <button id="nextBtn" class="btn btn-restart">🔁 المستوى التالي</button>
     </div>
-  </div>
-
+    <div class="game-stats">
+      <span class="stat-label">الحالة:</span><strong id="gameStatus" class="stat-value">جاهزة</strong>
+      <span class="stat-label">المطلوب:</span><strong id="coinsNeeded" class="stat-value">4</strong>
+    </div>
+  </main>
   <script src="game.js"></script>
 </body>
 </html>
