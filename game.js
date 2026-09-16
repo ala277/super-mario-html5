@@ -24,7 +24,6 @@ const player = {
     gravity: 0.6
 };
 
-// تصاميم المستويات السبعة في العالم الأول
 const levelDesigns = [
     { heights: [300, 300, 200, 150], widths: [200, 200, 150, 150], enemies: 2, coins: 4 },
     { heights: [300, 280, 300, 180, 150], widths: [120, 120, 120, 120, 120], enemies: 3, coins: 5 },
@@ -85,12 +84,13 @@ class Coin {
 function buildPlatforms(design) {
     const result = [{ x: 0, y: canvas.height - 30, width: canvas.width, height: 30 }];
     const gap = canvas.width / (design.heights.length + 1);
-    design.heights.forEach((y, index) => ({
+    const extraPlatforms = design.heights.map((y, index) => ({
         x: Math.min(70 + index * gap, canvas.width - design.widths[index] - 20),
         y,
         width: design.widths[index],
         height: 20
-    })).forEach(platform => result.push(platform));
+    }));
+    result.push(...extraPlatforms);
     return result;
 }
 
@@ -105,7 +105,6 @@ function loadLevel(levelNumber) {
         enemies.push(new Enemy(platform.x + 10, platform.y - 30));
     }
 
-    // نضع عملة واحدة على كل منصة حتى يكون الهدف واضحاً وقابلاً للتحقيق.
     for (let i = 0; i < design.coins; i++) {
         const platform = platforms[1 + (i % (platforms.length - 1))];
         coinsArray.push(new Coin(
@@ -143,8 +142,12 @@ function updateHud() {
     if (neededElement) neededElement.textContent = levelDesigns[level - 1].coins;
     if (statusElement) {
         const labels = {
-            ready: 'جاهزة للبدء', playing: 'تعمل', paused: 'متوقفة مؤقتاً',
-            levelComplete: 'اكتمل المستوى', gameOver: 'انتهت اللعبة', won: 'فوز!'
+            ready: 'جاهزة للبدء',
+            playing: 'تعمل',
+            paused: 'متوقفة مؤقتاً',
+            levelComplete: 'اكتمل المستوى',
+            gameOver: 'انتهت اللعبة',
+            won: 'فوز!'
         };
         statusElement.textContent = labels[gameState] || gameState;
     }
@@ -307,7 +310,6 @@ function gameLoop() {
     requestAnimationFrame(gameLoop);
 }
 
-// لوحة المفاتيح
 window.addEventListener('keydown', event => {
     const key = event.key;
     keys[key] = true;
@@ -318,7 +320,6 @@ window.addEventListener('keydown', event => {
 });
 window.addEventListener('keyup', event => { keys[event.key] = false; });
 
-// أزرار الواجهة الموجودة في index.html
 const buttonActions = {
     startBtn: startGame,
     pauseBtn: pauseGame,
@@ -331,7 +332,6 @@ Object.entries(buttonActions).forEach(([id, action]) => {
     if (button) button.addEventListener('click', action);
 });
 
-// دعم أزرار اللمس التي يمكن إضافتها لاحقاً بنفس أسماء المفاتيح.
 function bindHoldButton(id, key) {
     const button = document.getElementById(id);
     if (!button) return;
